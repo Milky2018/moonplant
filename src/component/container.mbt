@@ -29,12 +29,10 @@ pub impl Component for Container with draw(self, canvas, x, y) {
 }
 
 test "Container" {
-  let canvas = Canvas::new()
-  let layer = container(10, 10, [
+  let pic = container(10, 10, [
     (border(text("Hello")), TopRight),
     (border(text("World")), BottomLeft),
-  ])
-  canvas.paint(layer)
+  ]) |> paint
   let expected =
     #|
     #|   +-----+
@@ -48,5 +46,5 @@ test "Container" {
     #||World|   
     #|+-----+   
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

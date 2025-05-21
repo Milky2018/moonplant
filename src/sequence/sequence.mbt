@@ -20,18 +20,17 @@ pub fn Sequence::to_component(self : Sequence) -> &@c.Component {
 }
 
 test "Simple sequence" {
-  let canvas = @c.Canvas::new()
   let p1 = Participant::new("Alice")
   let p2 = Participant::new("Bob")
   let sequence = Sequence::new([p1, p2])
   sequence.add_message(Message::new(p1, p2, "Hello"))
   sequence.add_message(Message::new(p2, p1, "Hi"))
-  canvas.paint(sequence.to_component())
+  let pic = sequence.to_component() |> @c.paint
   let expected =
     #|
     #|+-----++---+
     #||Alice||Bob|
     #|+-----++---+
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

@@ -4,7 +4,7 @@ struct Canvas {
 }
 
 ///|
-pub fn Canvas::new() -> Canvas {
+fn Canvas::new() -> Canvas {
   let pixels = []
   { pixels, }
 }
@@ -30,12 +30,15 @@ fn Canvas::write_string(self : Canvas, s : String, x : Int, y : Int) -> Unit {
   }
 }
 
-pub fn Canvas::paint(self : Canvas, component : &Component) -> Unit {
-  component.draw(self, 0, 0) |> ignore
+///|
+pub fn paint(component : &Component) -> String {
+  let canvas = Canvas::new()
+  component.draw(canvas, 0, 0) |> ignore
+  canvas.to_string()
 }
 
 ///|
-pub fn Canvas::to_string(self : Canvas) -> String {
+fn Canvas::to_string(self : Canvas) -> String {
   let result = StringBuilder::new()
   for line in self.pixels {
     result.write_char('\n')

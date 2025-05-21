@@ -4,5 +4,5 @@ struct Participant {
 }
 
 pub fn Participant::new(name : String) -> Participant {
-  { name }
+  Participant::{ name }
 }
