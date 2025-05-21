@@ -9,13 +9,13 @@ pub fn layers(layers : Array[&Component]) -> Layers {
 }
 
 ///|
-impl Component for Layers with draw(self, canvas, x, y) {
+pub impl Component for Layers with draw(self, canvas, x, y) {
   for layer in self.layers {
     layer.draw(canvas, x, y)
   } 
 }
 
-impl Component for Layers with size(self) {
+pub impl Component for Layers with size(self) {
   let mut max_width = 0
   let mut max_height = 0
   for layer in self.layers {

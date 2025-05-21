@@ -10,7 +10,7 @@ pub fn text(content : String, align~ : HAlign = Left) -> Text {
 }
 
 ///|
-impl Component for Text with draw(self, canvas, x, y) {
+pub impl Component for Text with draw(self, canvas, x, y) {
   let lines = self.content.split("\n")
   let max_width = self.size().x
   let mut offset = 0
@@ -23,7 +23,7 @@ impl Component for Text with draw(self, canvas, x, y) {
 }
 
 ///|
-impl Component for Text with size(self) {
+pub impl Component for Text with size(self) {
   let lines = self.content.split("\n")
   let mut max_width = 0
   let mut max_height = 0

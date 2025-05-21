@@ -1,0 +1,3 @@
+{
+  "import": [{ "path": "Milky2018/moonplant/component", "alias": "c" }]
+}

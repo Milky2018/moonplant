@@ -10,7 +10,7 @@ pub fn h_box(components : Array[&Component], align~ : VAlign = Center) -> HBox {
 }
 
 ///|
-impl Component for HBox with draw(self, canvas, x, y) {
+pub impl Component for HBox with draw(self, canvas, x, y) {
   let rect = self.size()
   let mut cursor = x
   for component in self.components {
@@ -23,7 +23,7 @@ impl Component for HBox with draw(self, canvas, x, y) {
 }
 
 ///|
-impl Component for HBox with size(self) {
+pub impl Component for HBox with size(self) {
   let mut width = 0
   let mut max_height = 0
   for component in self.components {
@@ -48,7 +48,7 @@ pub fn v_box(components : Array[&Component], align~ : HAlign = Center) -> VBox {
 }
 
 ///|
-impl Component for VBox with draw(self, canvas, x, y) {
+pub impl Component for VBox with draw(self, canvas, x, y) {
   let rect = self.size()
   let mut cursor = y
   for component in self.components {
@@ -61,7 +61,7 @@ impl Component for VBox with draw(self, canvas, x, y) {
 }
 
 ///|
-impl Component for VBox with size(self) {
+pub impl Component for VBox with size(self) {
   let mut max_width = 0
   let mut height = 0
   for component in self.components {

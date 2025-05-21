@@ -1,44 +1,44 @@
 ///|
 type LArrow HBox
 
-impl Component for LArrow with draw(self, canvas, x, y) {
+pub impl Component for LArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
 }
 
-impl Component for LArrow with size(self) {
+pub impl Component for LArrow with size(self) {
   self._.size()
 }
 
 ///|
 type RArrow HBox
 
-impl Component for RArrow with draw(self, canvas, x, y) {
+pub impl Component for RArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
 }
 
-impl Component for RArrow with size(self) {
+pub impl Component for RArrow with size(self) {
   self._.size()
 }
 
 ///|
 type UArrow VBox
 
-impl Component for UArrow with draw(self, canvas, x, y) {
+pub impl Component for UArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
 }
 
-impl Component for UArrow with size(self) {
+pub impl Component for UArrow with size(self) {
   self._.size()
 }
 
 ///|
 type DArrow VBox
 
-impl Component for DArrow with draw(self, canvas, x, y) {
+pub impl Component for DArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
 }
 
-impl Component for DArrow with size(self) {
+pub impl Component for DArrow with size(self) {
   self._.size()
 }
 
