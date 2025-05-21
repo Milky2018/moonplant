@@ -1,0 +1,50 @@
+package "Milky2018/moonplant/component"
+
+// Values
+fn border(&Component) -> Border
+
+fn d_arrow(Int) -> VBox
+
+fn h_box(Array[&Component]) -> HBox
+
+fn h_line(Int) -> HLine
+
+fn l_arrow(Int) -> HBox
+
+fn r_arrow(Int) -> HBox
+
+fn text(String) -> Text
+
+fn u_arrow(Int) -> VBox
+
+fn v_box(Array[&Component]) -> VBox
+
+fn v_line(Int) -> VLine
+
+// Types and methods
+type Border
+
+type Canvas
+impl Canvas {
+  to_string(Self) -> String
+}
+
+type HBox
+
+type HLine
+
+type Text
+
+type VBox
+
+type VLine
+
+// Type aliases
+
+// Traits
+trait Component
+
+pub trait Draw {
+  draw(Self) -> String
+}
+

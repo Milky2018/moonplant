@@ -1,0 +1,10 @@
+{
+  "name": "Milky2018/moonplant",
+  "version": "0.1.0",
+  "readme": "README.md",
+  "repository": "https://github.com/Milky2018/moonplant.git",
+  "license": "Apache-2.0",
+  "keywords": ["ASCII", "Diagram"],
+  "description": "A ascii diagram painting library for MoonBit.",
+  "source": "src"
+}
