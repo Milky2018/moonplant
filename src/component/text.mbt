@@ -37,6 +37,7 @@ test "Multi-line text" {
   let canvas = Canvas::new()
   let rect = text("Hello\nWorld").draw(canvas, 0, 0)
   let expected =
+    #|
     #|Hello
     #|World
     #|
