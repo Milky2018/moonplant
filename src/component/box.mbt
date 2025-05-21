@@ -1,53 +1,77 @@
 ///|
 struct HBox {
   components : Array[&Component]
+  align : VAlign
 }
 
 ///|
-pub fn h_box(components : Array[&Component]) -> HBox {
-  HBox::{ components, }
+pub fn h_box(components : Array[&Component], align~ : VAlign = Center) -> HBox {
+  HBox::{ components, align }
 }
 
 ///|
 impl Component for HBox with draw(self, canvas, x, y) {
-  let mut max_width = 0
-  let mut max_height = 0
+  let rect = self.size()
   let mut cursor = x
   for component in self.components {
-    let v = component.draw(canvas, cursor, y)
-    cursor += v.x
+    let component_size = component.size()
+    let max_height = rect.y
+    let offset = align_vertical(self.align, component_size.y, max_height)
+    component.draw(canvas, cursor, y + offset)
+    cursor += component_size.x
+  }
+}
+
+///|
+impl Component for HBox with size(self) {
+  let mut width = 0
+  let mut max_height = 0
+  for component in self.components {
+    let v = component.size()
     if max_height < v.y {
       max_height = v.y
     }
-    if max_width < v.x {
-      max_width = v.x
-    }
+    width += v.x
   }
-  Vector::new(max_width, max_height)
+  Vector::new(width, max_height)
 }
 
 ///|
 struct VBox {
   components : Array[&Component]
+  align : HAlign
 }
 
 ///|
-pub fn v_box(components : Array[&Component]) -> VBox {
-  VBox::{ components, }
+pub fn v_box(components : Array[&Component], align~ : HAlign = Center) -> VBox {
+  VBox::{ components, align }
 }
 
 ///|
 impl Component for VBox with draw(self, canvas, x, y) {
-  let mut max_width = 0
-  let mut max_height = 0
+  let rect = self.size()
+  let mut cursor = y
   for component in self.components {
-    let v = component.draw(canvas, x, y + max_height)
-    max_height += v.y
+    let component_size = component.size()
+    let max_width = rect.x
+    let offset = align_horizontal(self.align, component_size.x, max_width)
+    component.draw(canvas, x + offset, cursor)
+    cursor += component_size.y
+  }
+}
+
+///|
+impl Component for VBox with size(self) {
+  let mut max_width = 0
+  let mut height = 0
+  for component in self.components {
+    let v = component.size()
+    height += v.y
     if max_width < v.x {
       max_width = v.x
     }
   }
-  Vector::new(max_width, max_height)
+  Vector::new(max_width, height)
 }
 
 ///|
@@ -57,8 +81,8 @@ test "HBox" {
   box.draw(canvas, 0, 0) |> ignore
   let expected =
     #|
-    #|-----|-----
     #|     |
+    #|-----|-----
     #|     |
     #|
   assert_eq!(canvas.to_string(), expected)
@@ -67,12 +91,12 @@ test "HBox" {
 ///|
 test "VBox" {
   let canvas = Canvas::new()
-  let box = v_box([text("Alice\nBob"), text("Carol")])
+  let box = v_box([text("Alice\nBob", align=Center), text("Carol")])
   box.draw(canvas, 0, 0) |> ignore
   let expected =
     #|
     #|Alice
-    #|Bob
+    #| Bob
     #|Carol
     #|
   assert_eq!(canvas.to_string(), expected)

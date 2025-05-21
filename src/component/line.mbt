@@ -12,6 +12,10 @@ pub fn h_line(length : Int) -> HLine {
 impl Component for HLine with draw(self, canvas, x, y) {
   let line = "-".repeat(self.length)
   canvas.write_string(line, x, y)
+}
+
+///|
+impl Component for HLine with size(self) {
   Vector::new(self.length, 1)
 }
 
@@ -30,6 +34,10 @@ impl Component for VLine with draw(self, canvas, x, y) {
   for i in 0..<self.length {
     canvas.write_char('|', x, y + i)
   }
+}
+
+///|
+impl Component for VLine with size(self) {
   Vector::new(1, self.length)
 }
 

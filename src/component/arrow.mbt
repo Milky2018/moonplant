@@ -5,11 +5,19 @@ impl Component for LArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
 }
 
+impl Component for LArrow with size(self) {
+  self._.size()
+}
+
 ///|
 type RArrow HBox
 
 impl Component for RArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
+}
+
+impl Component for RArrow with size(self) {
+  self._.size()
 }
 
 ///|
@@ -19,11 +27,19 @@ impl Component for UArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
 }
 
+impl Component for UArrow with size(self) {
+  self._.size()
+}
+
 ///|
 type DArrow VBox
 
 impl Component for DArrow with draw(self, canvas, x, y) {
   self._.draw(canvas, x, y)
+}
+
+impl Component for DArrow with size(self) {
+  self._.size()
 }
 
 ///|
@@ -49,7 +65,7 @@ pub fn d_arrow(length : Int) -> DArrow {
 ///|
 test "Arrows" {
   let canvas = Canvas::new()
-  v_box([l_arrow(2), r_arrow(2), u_arrow(2), d_arrow(2)]).draw(canvas, 0, 0)
+  v_box([l_arrow(2), r_arrow(2), u_arrow(2), d_arrow(2)], align=Left).draw(canvas, 0, 0)
   |> ignore
   let expected =
     #|

@@ -13,12 +13,15 @@ impl Component for Blank with draw(self, canvas, x, y) {
       canvas.write_char(' ', x + j, y + i)
     }
   }
+}
+
+impl Component for Blank with size(self) {
   Vector::new(self.width, self.height)
 }
 
 test "Blank" {
   let canvas = Canvas::new()
-  let rect = blank(5, 3).draw(canvas, 0, 0)
+  blank(5, 3).draw(canvas, 0, 0)
   let expected =
     #|
     #|     
@@ -26,5 +29,4 @@ test "Blank" {
     #|     
     #|
   assert_eq!(canvas.to_string(), expected)
-  assert_eq!(rect, { x: 5, y: 3 })
 }

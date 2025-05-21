@@ -12,7 +12,10 @@ pub fn abs(component : &Component, x : Int, y : Int) -> Abs {
 
 ///|
 impl Component for Abs with draw(self, canvas, _x, _y) {
-  self.component.draw(canvas, self.x, self.y) |> ignore
+  self.component.draw(canvas, self.x, self.y)
+}
+
+impl Component for Abs with size(_self) {
   Vector::new(0, 0)
 }
 
