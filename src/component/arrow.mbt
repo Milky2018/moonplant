@@ -1,14 +1,30 @@
 ///|
-typealias LArrow = HBox
+type LArrow HBox
+
+impl Component for LArrow with draw(self, canvas, x, y) {
+  self._.draw(canvas, x, y)
+}
 
 ///|
-typealias RArrow = HBox
+type RArrow HBox
+
+impl Component for RArrow with draw(self, canvas, x, y) {
+  self._.draw(canvas, x, y)
+}
 
 ///|
-typealias UArrow = VBox
+type UArrow VBox
+
+impl Component for UArrow with draw(self, canvas, x, y) {
+  self._.draw(canvas, x, y)
+}
 
 ///|
-typealias DArrow = VBox
+type DArrow VBox
+
+impl Component for DArrow with draw(self, canvas, x, y) {
+  self._.draw(canvas, x, y)
+}
 
 ///|
 pub fn l_arrow(length : Int) -> LArrow {
