@@ -16,7 +16,7 @@ pub impl Component for HLine with draw(self, canvas, x, y) {
 
 ///|
 pub impl Component for HLine with size(self) {
-  Vector::new(self.length, 1)
+  Vector2::new(self.length, 1)
 }
 
 ///|
@@ -38,21 +38,19 @@ pub impl Component for VLine with draw(self, canvas, x, y) {
 
 ///|
 pub impl Component for VLine with size(self) {
-  Vector::new(1, self.length)
+  Vector2::new(1, self.length)
 }
 
 ///|
 test "HLine" {
-  let canvas = Canvas::new()
-  h_line(5).draw(canvas, 0, 0) |> ignore
+  let pic = h_line(5) |> paint
   let expected = "\n-----\n"
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }
 
 ///|
 test "VLine" {
-  let canvas = Canvas::new()
-  v_line(5).draw(canvas, 0, 0) |> ignore
+  let pic = v_line(5) |> paint
   let expected =
     #|
     #||
@@ -61,5 +59,5 @@ test "VLine" {
     #||
     #||
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

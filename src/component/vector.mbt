@@ -1,10 +1,10 @@
 ///|
-struct Vector[T] {
-  x : T
-  y : T
+struct Vector2[T] {
+  mut x : T
+  mut y : T
 } derive(Show, Eq, Hash)
 
 ///|
-fn Vector::new[T](x : T, y : T) -> Vector[T] {
+fn Vector2::new[T](x : T, y : T) -> Vector2[T] {
   { x, y }
 }

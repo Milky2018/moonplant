@@ -9,7 +9,7 @@ pub fn container(width : Int, height : Int, children : Array[(&Component, Align)
 }
 
 pub impl Component for Container with size(self) {
-  Vector::new(self.width, self.height)
+  Vector2::new(self.width, self.height)
 }
 
 pub impl Component for Container with draw(self, canvas, x, y) {

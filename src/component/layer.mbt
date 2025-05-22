@@ -27,19 +27,17 @@ pub impl Component for Layers with size(self) {
       max_width = v.x
     }
   }
-  Vector::new(max_width, max_height)
+  Vector2::new(max_width, max_height)
 }
 
 test "Layers" {
-  let canvas = Canvas::new()
   let layer1 = text("Hello")
   let layer2 = v_box([text("1"), text("2")])
-  let layers = layers([layer1, layer2])
-  layers.draw(canvas, 0, 0) |> ignore
+  let pic = layers([layer1, layer2]) |> paint
   let expected =
     #|
     #|1ello
     #|2
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

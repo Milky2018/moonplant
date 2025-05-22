@@ -16,17 +16,16 @@ pub impl Component for Blank with draw(self, canvas, x, y) {
 }
 
 pub impl Component for Blank with size(self) {
-  Vector::new(self.width, self.height)
+  Vector2::new(self.width, self.height)
 }
 
 test "Blank" {
-  let canvas = Canvas::new()
-  blank(5, 3).draw(canvas, 0, 0)
+  let pic = blank(5, 3) |> paint
   let expected =
     #|
     #|     
     #|     
     #|     
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

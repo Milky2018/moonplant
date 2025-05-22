@@ -33,7 +33,7 @@ pub impl Component for HBox with size(self) {
     }
     width += v.x
   }
-  Vector::new(width, max_height)
+  Vector2::new(width, max_height)
 }
 
 ///|
@@ -71,33 +71,29 @@ pub impl Component for VBox with size(self) {
       max_width = v.x
     }
   }
-  Vector::new(max_width, height)
+  Vector2::new(max_width, height)
 }
 
 ///|
 test "HBox" {
-  let canvas = Canvas::new()
-  let box = h_box([h_line(5), v_line(3), h_line(5)])
-  box.draw(canvas, 0, 0) |> ignore
+  let pic = h_box([h_line(5), v_line(3), h_line(5)]) |> paint
   let expected =
     #|
     #|     |
     #|-----|-----
     #|     |
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }
 
 ///|
 test "VBox" {
-  let canvas = Canvas::new()
-  let box = v_box([text("Alice\nBob", align=Center), text("Carol")])
-  box.draw(canvas, 0, 0) |> ignore
+  let pic = v_box([text("Alice\nBob", align=Center), text("Carol")]) |> paint
   let expected =
     #|
     #|Alice
     #| Bob
     #|Carol
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

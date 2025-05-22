@@ -34,25 +34,23 @@ pub impl Component for Text with size(self) {
     }
     max_height += 1
   }
-  return Vector::new(max_width, max_height)
+  return Vector2::new(max_width, max_height)
 }
 
 ///|
 test "Text" {
-  let canvas = Canvas::new()
-  text("Hello").draw(canvas, 0, 0) |> ignore
+  let pic = text("Hello") |> paint
   let expected = "\nHello\n"
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }
 
 ///|
 test "Multi-line text" {
-  let canvas = Canvas::new()
-  text("Hello\nWorld").draw(canvas, 0, 0)
+  let pic = text("Hello\nWorld") |> paint
   let expected =
     #|
     #|Hello
     #|World
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

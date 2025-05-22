@@ -16,21 +16,17 @@ pub impl Component for Abs with draw(self, canvas, _x, _y) {
 }
 
 pub impl Component for Abs with size(_self) {
-  Vector::new(0, 0)
+  Vector2::new(0, 0)
 }
 
 ///|
 test "Abs" {
-  let canvas = Canvas::new()
-  v_box([text("Alice"), abs(text("Bob"), 3, 2), text("Carol")]).draw(
-    canvas, 0, 0,
-  )
-  |> ignore
+  let pic = v_box([text("Alice"), abs(text("Bob"), 3, 2), text("Carol")]) |> paint
   let expected =
     #|
     #|Alice
     #|Carol
     #|   Bob
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

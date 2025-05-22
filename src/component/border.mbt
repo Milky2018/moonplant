@@ -26,19 +26,17 @@ pub impl Component for Border with draw(self, canvas, x, y) {
 
 pub impl Component for Border with size(self) {
   let v = self.component.size()
-  Vector::new(v.x + 2, v.y + 2)
+  Vector2::new(v.x + 2, v.y + 2)
 }
 
 ///|
 test "Text border" {
-  let canvas = Canvas::new()
-  let bordered_text = border(text("Hello"))
-  bordered_text.draw(canvas, 0, 0) |> ignore
+  let pic = border(text("Hello")) |> paint
   let expected =
     #|
     #|+-----+
     #||Hello|
     #|+-----+
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }

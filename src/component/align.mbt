@@ -50,7 +50,7 @@ fn align(
   height : Int,
   max_width : Int,
   max_height : Int
-) -> Vector[Int] {
+) -> Vector2[Int] {
   let (ha, va) = match alignment {
     Align::TopLeft => (HAlign::Left, VAlign::Top)
     Align::TopCenter => (HAlign::Center, VAlign::Top)
@@ -64,5 +64,5 @@ fn align(
   }
   let x = align_horizontal(ha, width, max_width)
   let y = align_vertical(va, height, max_height)
-  Vector::new(x, y)
+  Vector2::new(x, y)
 }

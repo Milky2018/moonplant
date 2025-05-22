@@ -64,9 +64,7 @@ pub fn d_arrow(length : Int) -> DArrow {
 
 ///|
 test "Arrows" {
-  let canvas = Canvas::new()
-  v_box([l_arrow(2), r_arrow(2), u_arrow(2), d_arrow(2)], align=Left).draw(canvas, 0, 0)
-  |> ignore
+  let pic = v_box([l_arrow(2), r_arrow(2), u_arrow(2), d_arrow(2)], align=Left) |> paint
   let expected =
     #|
     #|<-
@@ -76,5 +74,5 @@ test "Arrows" {
     #||
     #|v
     #|
-  assert_eq!(canvas.to_string(), expected)
+  assert_eq!(pic, expected)
 }
