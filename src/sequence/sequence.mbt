@@ -17,7 +17,7 @@ pub fn Sequence::add_message(self : Sequence, message : Message) -> Unit {
 ///|
 pub fn Sequence::to_component(self : Sequence) -> &@c.Component {
   let message_count = self.messages.length()
-  let life = message_count * 2 + 1
+  let life = message_count * 3 + 1
   let start_y = Ref::new(0)
   let lifeline_xs = {}
   let calculate_message_start = fn(p) {
@@ -40,13 +40,21 @@ pub fn Sequence::to_component(self : Sequence) -> &@c.Component {
     @c.v_box(
       self.messages.mapi(fn(i, m) {
         @c.dynamic_abs(fn(_canvas, _x, _y) {
-          let y = start_y.val + i * 2 + 1
+          let y = start_y.val + i * 3 + 1
           let sender_x = lifeline_xs.get(m.sender).unwrap()
           let receiver_x = lifeline_xs.get(m.receiver).unwrap()
           if sender_x < receiver_x {
-            (@c.r_arrow(receiver_x - sender_x - 1), sender_x + 1, y)
+            (
+              @c.label(@c.r_arrow(receiver_x - sender_x - 1), m.content, Top),
+              sender_x + 1,
+              y,
+            )
           } else {
-            (@c.l_arrow(sender_x - receiver_x - 1), receiver_x + 1, y)
+            (
+              @c.label(@c.l_arrow(sender_x - receiver_x - 1), m.content, Top),
+              receiver_x + 1,
+              y,
+            )
           }
         })
       }),
@@ -68,8 +76,10 @@ test "Simple sequence" {
     #||Alice||Bob|
     #|+-----++---+
     #|   |     |
+    #|   |Hello|
     #|   |---->|
     #|   |     |
+    #|   | Hi  |
     #|   |<----|
     #|   |     |
     #|

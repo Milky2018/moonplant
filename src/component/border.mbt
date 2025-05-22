@@ -24,6 +24,7 @@ pub impl Component for Border with draw(self, canvas, x, y) {
   v_line(height - 2).draw(canvas, x + width - 1, y + 1) |> ignore
 }
 
+///|
 pub impl Component for Border with size(self) {
   let v = self.component.size()
   Vector2::new(v.x + 2, v.y + 2)

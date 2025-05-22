@@ -1,48 +1,124 @@
 package "Milky2018/moonplant/component"
 
 // Values
+fn abs(&Component, Int, Int) -> Abs
+
+fn blank(Int, Int) -> Blank
+
 fn border(&Component) -> Border
+
+fn container(Int, Int, Array[(&Component, Align)]) -> Container
 
 fn d_arrow(Int) -> VBox
 
-fn h_box(Array[&Component]) -> HBox
+fn dynamic_abs((Canvas, Int, Int) -> (&Component, Int, Int)) -> DynamicAbs
+
+fn h_box(Array[&Component], align~ : VAlign = ..) -> HBox
 
 fn h_line(Int) -> HLine
 
+fn hook(&Component, (Canvas, Int, Int) -> Unit) -> Hook
+
 fn l_arrow(Int) -> HBox
+
+fn label(&Component, String, Position) -> &Component
+
+fn layers(Array[&Component]) -> Layers
+
+fn paint(&Component) -> String
 
 fn r_arrow(Int) -> HBox
 
-fn text(String) -> Text
+fn text(String, align~ : HAlign = ..) -> Text
 
 fn u_arrow(Int) -> VBox
 
-fn v_box(Array[&Component]) -> VBox
+fn v_box(Array[&Component], align~ : HAlign = ..) -> VBox
 
 fn v_line(Int) -> VLine
 
 // Types and methods
+type Abs
+impl Component for Abs
+
+pub(all) enum Align {
+  TopLeft
+  TopCenter
+  TopRight
+  CenterLeft
+  Center
+  CenterRight
+  BottomLeft
+  BottomCenter
+  BottomRight
+}
+
+type Blank
+impl Component for Blank
+
 type Border
+impl Component for Border
 
 type Canvas
-impl Canvas {
-  to_string(Self) -> String
+
+type Container
+impl Component for Container
+
+type DynamicAbs
+impl Component for DynamicAbs
+
+pub(all) enum HAlign {
+  Left
+  Center
+  Right
 }
 
 type HBox
+impl Component for HBox
 
 type HLine
+impl Component for HLine
+
+type Hook
+impl Component for Hook
+
+type Layers
+impl Component for Layers
+
+pub(all) enum Position {
+  Top
+  Bottom
+  Left
+  Right
+}
 
 type Text
+impl Component for Text
+
+pub(all) enum VAlign {
+  Top
+  Center
+  Bottom
+}
 
 type VBox
+impl Component for VBox
 
 type VLine
+impl Component for VLine
+
+type Vector2[T]
+impl[T : Eq] Eq for Vector2[T]
+impl[T : Hash] Hash for Vector2[T]
+impl[T : Show] Show for Vector2[T]
 
 // Type aliases
 
 // Traits
-trait Component
+pub(open) trait Component {
+  draw(Self, Canvas, Int, Int) -> Unit
+  size(Self) -> Vector2[Int]
+}
 
 pub trait Draw {
   draw(Self) -> String

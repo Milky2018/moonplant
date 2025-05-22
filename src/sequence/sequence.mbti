@@ -1,0 +1,33 @@
+package "Milky2018/moonplant/sequence"
+
+import(
+  "Milky2018/moonplant/component"
+)
+
+// Values
+
+// Types and methods
+type Message
+impl Message {
+  new(Participant, Participant, String) -> Self
+}
+
+type Participant
+impl Participant {
+  new(String) -> Self
+}
+impl Eq for Participant
+impl Hash for Participant
+impl Show for Participant
+
+type Sequence
+impl Sequence {
+  add_message(Self, Message) -> Unit
+  new(Array[Participant]) -> Self
+  to_component(Self) -> &@component.Component
+}
+
+// Type aliases
+
+// Traits
+

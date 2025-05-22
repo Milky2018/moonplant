@@ -1,8 +1,9 @@
 ///|
 struct Participant {
-  name : String 
+  name : String
 } derive(Eq, Hash, Show)
 
+///|
 pub fn Participant::new(name : String) -> Participant {
-  Participant::{ name }
+  Participant::{ name, }
 }
